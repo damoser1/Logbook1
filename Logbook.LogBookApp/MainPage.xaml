@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Logbook.LogBookApp.MainPage"
-             Shell.NavBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
              xmlns:viewmodels="clr-namespace:Logbook.LogBookApp.ViewModel"
              x:DataType="viewmodels:MainViewModel"
+             xmlns:model="clr-namespace:Logbook.Lib;assembly=Logbook.Lib"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
     <ContentPage.Behaviors>
@@ -12,27 +13,45 @@
                                         Command="{Binding LoadDataCommand}"/>
     </ContentPage.Behaviors>
 
-    <Grid RowDefinitions="Auto,180">
+    <!-- erstes Grid (Hauptgrid) -->
+    <Grid RowDefinitions="180,Auto">
 
-        <Label Text="{Binding Header}"/>
+         <!-- erste Zeile im Hauptgrid-->
+        <!--
+        <Label Text="{Binding Header}" FontSize="Subtitle"/>
+        -->
 
-        <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto,*">
+        <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto,*" Margin="10">
             <!-- Header -->
             <Grid ColumnDefinitions="100,2*,*,*" Grid.Row="0">
-                <Label Grid.Column="0" Text="Datum" Padding="5"/>
-                <Label Grid.Column="1" Text="Beschreibung" Padding="5"/>
-                <Label Grid.Column="2" Text="Von" Padding="5"/>
-                <Label Grid.Column="3" Text="Nach" Padding="5"/>
+                <Label Grid.Column="0" Text="Datum" Padding="5" FontAttributes="Bold" FontSize="Caption"/>
+                <Label Grid.Column="1" Text="Beschreibung" Padding="5" FontAttributes="Bold"  FontSize="Caption"/>
+                <Label Grid.Column="2" Text="Von" Padding="5" FontAttributes="Bold"  FontSize="Caption"/>
+                <Label Grid.Column="3" Text="Nach" Padding="5" FontAttributes="Bold"  FontSize="Caption"/>
             </Grid>
             
             <!-- Data -->
-            <CollectionView Grid.Row="1">
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Entries}">
+                
                 <CollectionView.EmptyView>
-                    <Label Text="Es wurde keine Fahrt hinzugefügt."/>
+                    <Label Text="Es wurde keine Fahrt hinzugefügt." Padding="10"/>
                 </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Entry">
+                        <Grid ColumnDefinitions="100,2*,*,*" Grid.Row="0">
+                            <Label Grid.Column="0" Text="{Binding Start, StringFormat='{0:yyyy-MM-dd}'}" Padding="5" />
+                            <Label Grid.Column="1" Text="{Binding Description}" Padding="5" />
+                            <Label Grid.Column="2" Text="{Binding From}" Padding="5" />
+                            <Label Grid.Column="3" Text="{Binding To}" Padding="5" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
             </CollectionView>
         </Grid>
 
+        <Button Grid.Row="1" Text="add Demo" Command="{Binding AddCommand}"></Button>
     </Grid>
 
 </ContentPage>
