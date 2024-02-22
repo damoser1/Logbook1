@@ -39,7 +39,27 @@ namespace Logbook.LogBookApp.ViewModel
             {
                 Console.WriteLine(ex.Message);
             }
+        }
 
+        [RelayCommand]
+        void Add()
+        {
+            Lib.Entry entrySaalfelden = new(DateTime.Now.AddDays(3),
+                                  DateTime.Now.AddDays(3).AddMinutes(20),
+                                  25500,
+                                  25514,
+                                  "ZE-XY123",
+                                  "Zell am See",
+                                  "Saalfelden")
+            {
+                Description = "Fahrt nach Saalfelden"
+            };
+
+            var result = _repository.Add(entrySaalfelden);
+            if(result == true)
+            {
+                this.Entries.Add(entrySaalfelden);
+            }
 
         }
     }
