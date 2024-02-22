@@ -8,7 +8,7 @@
     Title="Logbook.LogBookApp">
 
     <ShellContent
-        Title="Home"
+        Title="Fahrtenbuch"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
