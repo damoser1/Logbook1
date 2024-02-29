@@ -23,6 +23,10 @@ namespace Logbook.LogBookApp.ViewModel
         [ObservableProperty]
         ObservableCollection<Logbook.Lib.Entry> _ent = [];
 
+        [ObservableProperty]
+        Lib.Entry? _selectedEntry = null;
+
+
         #region Properties
 
         [ObservableProperty]
@@ -66,12 +70,10 @@ namespace Logbook.LogBookApp.ViewModel
             }
         }
 
+        
         private bool CanAdd => this.Description.Length > 0;
 
-
-
-
-        [RelayCommand(CanExecute = nameof(CanAdd))]
+        [RelayCommand(CanExecute = nameof(CanAdd))] // nameof ist eine Hilfe für den Programmierer
         void Add()
         {
             /*
