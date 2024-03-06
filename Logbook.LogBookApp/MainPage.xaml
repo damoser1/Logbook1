@@ -10,8 +10,20 @@
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Appearing"
-                                        Command="{Binding LoadDataCommand}"/>
+                                        Command="{Binding LoadDataCommand}"
+                                        />
+        
     </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <toolkit:IsNotNullConverter x:Key="IsNullConverter"/>
+            <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     
     <ScrollView>
@@ -132,8 +144,13 @@
 
             
             <!-- Details -->
-            
-            
+            <Grid Padding="10" Grid.Column="1" IsVisible="{Binding SelectedEntry}">
+                
+                
+                
+            </Grid>
+            <!-- Details -->
+
         </Grid>
     </ScrollView>
 

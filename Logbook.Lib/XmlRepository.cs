@@ -89,7 +89,7 @@ namespace Logbook.Lib
 
                           )
                           {
-                              Description = entry.Value,
+                              Description = entry.Value,    
                           }).FirstOrDefault();
 
             return item;
