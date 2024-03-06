@@ -10,18 +10,14 @@
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Appearing"
-                                        Command="{Binding LoadDataCommand}"
-                                        />
-        
+                                        Command="{Binding LoadDataCommand}"/>
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
             <toolkit:IsNotNullConverter x:Key="IsNullConverter"/>
             <toolkit:IsNotNullConverter x:Key="IsNotNullConverter"/>
             <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter"/>
-
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -144,10 +140,14 @@
 
             
             <!-- Details -->
-            <Grid Padding="10" Grid.Column="1" IsVisible="{Binding SelectedEntry}">
-                
-                
-                
+            <Grid Padding="10" Grid.Column="1" Grid.RowSpan="3" IsVisible="{Binding SelectedEntry,Converter={StaticResource IsNullConverter}}">
+                <Label FontAttributes="Bold" HorizontalOptions="Center" Text="Bitte wählen Sie eine Fahrt mit STRG aus"></Label>
+            </Grid>
+
+            <Grid Padding="10" Grid.Column="1" Grid.RowSpan="3" IsVisible="{Binding SelectedEntry,Converter={StaticResource IsNotNullConverter}}">
+                <StackLayout>
+                    <Label FontSize="Large" TextColor="{StaticResource Primary}" Text="{Binding SelectedEntry.Description, TargetNullValue='Keine Beschreibung vorhanden'}"/>
+                </StackLayout>
             </Grid>
             <!-- Details -->
 
