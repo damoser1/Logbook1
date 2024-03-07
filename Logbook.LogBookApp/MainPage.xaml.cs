@@ -1,4 +1,4 @@
-﻿using Logbook.LogBookApp.ViewModel;
+﻿using Logbook.LogBookCore.ViewModel;
 
 namespace Logbook.LogBookApp
 {

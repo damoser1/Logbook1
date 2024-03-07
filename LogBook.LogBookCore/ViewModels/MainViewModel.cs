@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logbook.LogBookApp.ViewModel
+namespace Logbook.LogBookCore.ViewModel
 {
     public partial class MainViewModel(IRepository repository) : ObservableObject
     {
-
-        public string Header => "Fahrtenbuch";
+   
+        // public string Header => "Fahrtenbuch";
+        
 
         public object Entries { get; private set; }
 
@@ -108,7 +109,6 @@ namespace Logbook.LogBookApp.ViewModel
 
 
         }
-
-
     }
+
 }
