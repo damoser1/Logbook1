@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Logbook.LogBookApp.MainPage"
              Shell.NavBarIsVisible="True"
-             xmlns:viewmodels="clr-namespace:LogBook.LogBookCore.ViewModels;assembly=LogBook.LogBookCore"
+             xmlns:viewmodels="clr-namespace:Logbook.LogBookCore.ViewModel;assembly=LogBook.LogBookCore"
              x:DataType="viewmodels:MainViewModel"
              xmlns:model="clr-namespace:Logbook.Lib;assembly=Logbook.Lib"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -149,6 +149,30 @@
                 <StackLayout>
                     <Label FontSize="Large" TextColor="{StaticResource Primary}" Text="{Binding SelectedEntry.Description, TargetNullValue='Keine Beschreibung vorhanden'}" />
                     <!-- TargetNullValue = falls null das trotzdem etwas ausgegeben wird -->
+
+                    <!-- Nur zum Testem
+                    <Label Text="{Binding SelectedEntry.Start}"/>
+                    <Label Text="{Binding SelectedEntry.End}"/>
+                    -->
+
+                    <Label>
+                        <Label.Text>
+                            <MultiBinding StringFormat="{} von {0} nach {1}" TargetNullValue="Bitte wählen Sie eine Fahrt aus.">
+                                <Binding Path="SelectedEntry.From"/>
+                                <Binding Path="SelectedEntry.To"/>
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+
+                    <Label Margin="0,10,0,0" FontSize="Medium" Text="{Binding SelectedEntry.Start, StringFormat='Start am {0:d. MMM. yyyy}'}"/>
+                    <Label Margin="0,0,0,10" FontSize="Medium" Text="{Binding SelectedEntry.End, StringFormat='Ende am {0:d. MMM. yyyy}'}"/>
+
+                    <Label FontSize="Small" Text="{Binding SelectedEntry.NumberPlate, StringFormat='Kennzeichen am {0}'}"/>
+                    <Label FontSize="Small" Text="{Binding SelectedEntry.StartKM, StringFormat='Start-KM am {0}'}"/>
+                    <Label FontSize="Small" Text="{Binding SelectedEntry.EndKM, StringFormat='End-KM am {0}'}"/>
+
+                    <Button Margin="5" Text="Fahrt löschen" FontSize="smal" BackgroundColor="{StaticResource Red950}" FontAttributes="Bold"/>
+
                 </StackLayout>
             </Grid>
             <!-- Details -->
