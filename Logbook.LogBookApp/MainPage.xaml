@@ -142,7 +142,7 @@
             
             <!-- Details -->
             <Grid Padding="10" Grid.Column="1" Grid.RowSpan="3" IsVisible="{Binding SelectedEntry,Converter={StaticResource IsNullConverter}}">
-                <Label FontAttributes="Bold" HorizontalOptions="Center" Text="Bitte wählen Sie eine Fahrt mit STRG aus"></Label>
+                <Label FontAttributes="Bold" HorizontalOptions="Center" Text="Bitte wählen Sie eine Fahrt aus"></Label>
             </Grid>
 
             <Grid Padding="10" Grid.Column="1" Grid.RowSpan="3" IsVisible="{Binding SelectedEntry,Converter={StaticResource IsNotNullConverter}}">
@@ -171,7 +171,7 @@
                     <Label FontSize="Small" Text="{Binding SelectedEntry.StartKM, StringFormat='Start-KM am {0}'}"/>
                     <Label FontSize="Small" Text="{Binding SelectedEntry.EndKM, StringFormat='End-KM am {0}'}"/>
 
-                    <Button Margin="5" Text="Fahrt löschen" FontSize="smal" BackgroundColor="{StaticResource Red950}" FontAttributes="Bold"/>
+                    <Button Margin="5" Text="Fahrt löschen" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedEntry}" FontSize="Small" BackgroundColor="{StaticResource Red950}" FontAttributes="Bold"/>
 
                 </StackLayout>
             </Grid>
