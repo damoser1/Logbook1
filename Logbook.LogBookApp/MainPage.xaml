@@ -25,7 +25,7 @@
     
     <ScrollView>
         <!-- erstes Grid (HauptGrid)-->
-        <Grid RowDefinitions="180,Auto, Auto" Margin="10" ColumnDefinitions="*,*">
+        <Grid RowDefinitions="180,Auto" Margin="10" ColumnDefinitions="*,*">
             <!--
         <Label Text="{Binding Header}" FontSize="Subtitle"/>
         -->
@@ -58,7 +58,7 @@
                 </CollectionView>
             </Grid>
 
-            <Button Command="{Binding AddCommand}" Grid.Row="1" Text="add demo"></Button>
+            <!-- <Button Command="{Binding AddCommand}" Grid.Row="1" Text="add demo"></Button> -->
 
 
             <!--Eingabe-->

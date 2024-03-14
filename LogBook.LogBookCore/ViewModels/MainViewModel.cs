@@ -23,6 +23,7 @@ namespace Logbook.LogBookCore.ViewModel
 
         IAlertService _alertService = alertService;
 
+        private bool _isLoaded = false;
 
         [ObservableProperty]
         ObservableCollection<Logbook.Lib.Entry> _ent = [];
@@ -90,12 +91,23 @@ namespace Logbook.LogBookCore.ViewModel
         [RelayCommand]
         void LoadData()
         {
-            var entries = _repository.GetAll();
+            // naja
+            // Ent.Clear(); // ist für dafür da, das wenn wir vom Bericht zurück wechseln, dass die Einträge zurückgesetzt werden
 
-            foreach (var entry in entries)
+            // besser so
+            if (!_isLoaded)
             {
-                Ent.Add(entry);
+                var entries = _repository.GetAll();
+
+                foreach (var entry in entries)
+                {
+                    Ent.Add(entry);
+                }
+
+                _isLoaded = true;
             }
+
+            
         }
 
         

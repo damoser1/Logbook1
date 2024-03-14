@@ -1,4 +1,5 @@
 ﻿using Logbook.LogBookCore.ViewModel;
+using Syncfusion.Maui.Charts;
 
 namespace Logbook.LogBookApp
 {

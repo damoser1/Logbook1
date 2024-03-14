@@ -11,10 +11,7 @@ namespace Logbook.LogBookApp.Services
     {
         public async void ShowAlert(string title, string message)
         {
-            Application.Current.MainPage.Dispatcher.Dispatch(async()
-            {
-                await ShowAlertAsync(title, message);
-            });
+            Application.Current.MainPage.Dispatcher.Dispatch(async() => { await ShowAlertAsync(title, message);});
 
        
         }
