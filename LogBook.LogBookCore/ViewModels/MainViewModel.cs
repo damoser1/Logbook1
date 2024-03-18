@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Messaging;
+using LogBook.LogBookCore.Messages;
 
 namespace Logbook.LogBookCore.ViewModel
 {
@@ -144,10 +146,9 @@ namespace Logbook.LogBookCore.ViewModel
                 this.To = "";
                 this.StartKM = this.EndKM;
                 this.EndKM = 0;
+
+                WeakReferenceMessenger.Default.Send(new AddMessage(entry));
             }
-
-
         }
     }
-
 }

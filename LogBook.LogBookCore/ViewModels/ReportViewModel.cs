@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Logbook.Lib;
+using LogBook.LogBookCore.Messages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,35 +15,42 @@ namespace LogBook.LogBookCore.ViewModels
     public partial class ReportViewModel : ObservableObject
     {
         IRepository _repository;
+
         public ReportViewModel(IRepository repository)
         {
             _repository = repository;
+
+            WeakReferenceMessenger.Default.Register<AddMessage>(this, (r, m) =>
+            {
+                // m.Value: unser Entry-Objekt
+                System.Diagnostics.Debug.WriteLine(m.Value);
+
+                // add to list
+                this.Entries.Add(m.Value);
+            });
         }
 
-        [ObservableProperty]
-        ObservableCollection<Logbook.Lib.Entry> _ent = [];
-
         private bool _isLoaded = false;
+
+        [ObservableProperty]
+        ObservableCollection<Logbook.Lib.Entry> _entries = []; // ist wie eine Liste, mit einem zusätzlichen Feature, welches die Oberfläche über Änderungen informiert
 
         [RelayCommand]
         void LoadData()
         {
-            // naja
-            // Ent.Clear(); // ist für dafür da, das wenn wir vom Bericht zurück wechseln, dass die Einträge zurückgesetzt werden
+            // Entries.Clear(); wäre eine Möglichkeit die Daten nur einmal anzuzeigen, weil sie immer gelöscht und wieder geladen werden, performancetechnisch aber ungut
 
-            // besser so
-            if (!_isLoaded)
+            if (!_isLoaded) // gleich wie if(_isLoaded = false)
             {
                 var entries = _repository.GetAll();
 
                 foreach (var entry in entries)
                 {
-                    Ent.Add(entry);
+                    Entries.Add(entry);
                 }
 
                 _isLoaded = true;
             }
         }
-
     }
 }
