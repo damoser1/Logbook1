@@ -64,6 +64,28 @@ namespace Logbook.LogBookCore.ViewModel
 
         #endregion
 
+        void ToggleFavorite(Lib.Entry entry)
+        {
+            entry.Favourite = !entry.Favourite;
+
+            var result = _repository.Update(entry);
+
+            if (result == true)
+            {
+                int pos = this.Ent.IndexOf(entry);
+
+                if(pos != -1)
+                {
+                    this.Ent[pos] = entry;
+                    _alertService.ShowAlert("Fehler", "Der Status konnte verändert werden");
+                }
+            }
+            else
+            {
+                _alertService.ShowAlert("Fehler", "Der Status konnte nicht verändert werden");
+            }
+        }
+
         [RelayCommand]
         void Delete(Lib.Entry entry)
         {
@@ -129,7 +151,7 @@ namespace Logbook.LogBookCore.ViewModel
             "Saalfelden");
             */
 
-            Lib.Entry entry = new(this.Start, this.End, this.StartKM, this.EndKM, this.NumberPlate, this.From, this.To);
+            Lib.Entry entry = new(this.Start, this.End, this.StartKM, this.EndKM, this.NumberPlate, this.From, this.To, false);
 
             if (this.Description.Length > 0)
             {
