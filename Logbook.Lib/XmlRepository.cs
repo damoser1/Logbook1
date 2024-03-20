@@ -54,6 +54,9 @@ namespace Logbook.Lib
             var toAttrib = new XAttribute("to", entry.To.ToString());
             node.Add(toAttrib);
 
+            var favouriteAttrib = new XAttribute("favourite", entry.Favourite.ToString());
+            node.Add(favouriteAttrib);
+
             node.Add(entry.Description.ToString());
 
             _rootElement.Add(node);
@@ -85,6 +88,7 @@ namespace Logbook.Lib
                               entry.Attribute("numberplate")?.Value,
                               entry.Attribute("from")?.Value,
                               entry.Attribute("to")?.Value,
+                              Convert.ToBoolean(entry.Attribute("favourite")?.Value),
                               entry.Attribute("id")?.Value
 
                           )
@@ -106,6 +110,7 @@ namespace Logbook.Lib
                               entry.Attribute("numberplate")?.Value,
                               entry.Attribute("from")?.Value,
                               entry.Attribute("to")?.Value,
+                              Convert.ToBoolean(entry.Attribute("favourite")?.Value),
                               entry.Attribute("id")?.Value
 
                           )
@@ -146,6 +151,7 @@ namespace Logbook.Lib
                 item.SetAttributeValue("numberplate", entry.NumberPlate.ToString());
                 item.SetAttributeValue("to", entry.To.ToString());
                 item.SetAttributeValue("from", entry.From.ToString());
+                item.SetAttributeValue("favourite", entry.Favourite.ToString());
 
                 return this.Save();
             }

@@ -8,6 +8,7 @@ namespace Logbook.Lib
 {
     public class Entry
     {
+        public bool Favourite { get; set; } = false;
         public string Description { get; set; } = string.Empty;
 
         public DateTime Start { get; set; }
@@ -32,7 +33,7 @@ namespace Logbook.Lib
         /// </summary>
         public string Id { get; set; }
 
-        public Entry(DateTime start, DateTime end, int startKM, int endKM, string numberPlate, string from, string to, string id)
+        public Entry(DateTime start, DateTime end, int startKM, int endKM, string numberPlate, string from, string to, bool favourite, string id)
         {
             this.Start = start;
             this.End = end;
@@ -42,9 +43,10 @@ namespace Logbook.Lib
             this.From = from;
             this.To = to;
             this.Id = id;
+            this.Favourite = favourite;
         }
 
-        public Entry(DateTime start, DateTime end, int startKM, int endKM, string numberPlate, string from, string to)
+        public Entry(DateTime start, DateTime end, int startKM, int endKM, string numberPlate, string from, string to, bool favourite)
         {
             this.Id = Guid.NewGuid().ToString();
             this.Start = start;
@@ -54,6 +56,7 @@ namespace Logbook.Lib
             this.NumberPlate = numberPlate;
             this.From = from;
             this.To = to;
+            this.Favourite = favourite;
         }
 
         public override string ToString()

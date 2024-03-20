@@ -12,7 +12,7 @@ repository.Add(new Entry(DateTime.Now,
                          25170,
                          "ZE-XY123",
                          "Zell am See",
-                         "München"));
+                         "München",false));
 
 
 Entry entrySaalfelden = new(DateTime.Now.AddDays(3),
@@ -21,7 +21,7 @@ Entry entrySaalfelden = new(DateTime.Now.AddDays(3),
                                   25514,
                                   "ZE-XY123",
                                   "Zell am See",
-                                  "Saalfelden")
+                                  "Saalfelden",true)
                                   { 
                                         Description = "Fahrt nach Saalfelden"
                                   };
